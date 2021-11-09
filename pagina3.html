@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria</title>
+    <link rel="shortcut icon" href="logo2.png" type="image/x-icon">
+
+<style>
+    * {margin: 0;
+        padding: 0;
+        background: -webkit-repeating-linear-gradient(black,red);
+    }
+   .card_img {
+       width: 200px;
+       height: 200px;
+       overflow:hidden;
+       margin: 25px;
+   }
+   .small_img{
+       height: 100%;
+       cursor: pointer;
+       transition: all linear 0.4s;
+    
+    }
+    
+    .row{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+  #modal_img{
+     width: 50vw;
+     transform: scale(0);
+     transition: all linear .3s;
+  }
+  .modal_active #modal_img{
+      transform: scale(1);
+  }
+  .modal{
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, .7);
+      position: fixed;
+      visibility: hidden;
+      z-index: 1;
+      opacity: 0;
+      transition: visibility 0.8s linear,opacity 0.5s linear;
+  }
+  .small_img:hover{
+      filter: grayscale(100%);
+      transform: scale(1.1);
+  }
+  .modal_content{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+
+  }        
+  #bt_close{
+      color: white;
+      background-color: black;
+      position: absolute;
+      top:10px;
+      right: 10px;
+      padding: 5px 10px;
+      font-size: 25px;
+      border: solid 1px white;
+      transition: all ease-out .4s;
+      cursor: pointer;
+
+  } 
+  #bt_close:hover{
+      background-color: rgb(175, 236, 31)(179, 255, 0);
+  }
+
+  .modal_active{
+      visibility: visible;
+      opacity: 1;
+  }
+ 
+ </style>
+</head>
+
+<body>
+ 
+    <div class="modal">
+        <div class="modal_content">
+            <img src="imagens/foto1.jpg" id="modal_img">
+        </div>
+        <span id="bt_close">&times;</span>
+    </div>
+
+
+
+
+     <div class="container">
+      
+        <div class="row">
+
+       <div class="card_img">
+      <img src="iconesvg/bydu.svg" class="small_img">
+       </div> <div class="card_img">
+     <img src="iconesvg/Carlos Junior.svg" class="small_img">
+         </div>
+     <div class="card_img">
+     <img src="iconesvg/Galego.svg" class="small_img">
+      </div>
+     <div class="card_img">
+    <img src="iconesvg/Murilo.svg" class="small_img">
+    </div>
+
+                 
+
+        <div class="card_img">
+             <img src="joão.svg" class="small_img">
+         </div>
+          <div class="card_img">
+             <img src="Miguel.svg" class="small_img">
+           </div>
+             <div class="card_img">
+               <img src="Ed carlos.svg" class="small_img">
+             </div>
+            <div class="card_img">
+              <img src="Stefano.svg" class="small_img">
+            </div>
+            <div class="card_img">
+                <img src="Francisco.svg" class="small_img">
+              </div>
+              <div class="card_img">
+                <img src="Davi.svg" class="small_img">
+              </div>
+
+       </div>
+   <script>
+         
+         let imagens= document.querySelectorAll('.small_img');
+         let modal= document.querySelector('.modal');
+         let modalimg= document.querySelector('#modal_img');
+         let bitClose=  document.querySelector('#bt_close');
+         let srcVal="";
+
+    for (let i =0; i<imagens.length;i++){
+        imagens[i].addEventListener('click',function (){
+        
+        srcVal = imagens[i].getAttribute('src');
+        modalimg.setAttribute('src',srcVal);
+        modal.classList.toggle('modal_active');
+       });
+   }
+
+   bitClose.addEventListener('click',function(){
+       modal.classList.toggle('modal_active');
+   });
+
+          
+   </script>
+
+</body>
+</html>

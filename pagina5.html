@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos</title>
+    <style>
+        #produtos{
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2%;
+            display: flex;
+            font-size: 20px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        
+        }
+     }
+
+        #carrinhos{
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2%;
+            display: block
+        }
+        
+        .produto-single{
+            width: 33.3%;
+            padding: 0 20px;
+        }
+
+       
+        
+    </style>
+</head>
+
+<body>
+
+    <h2>Vitrine</h2>
+
+  <div id="produtos">
+    
+
+  </div><!--produtos-->
+
+  <h2>Carrinho</h2>
+
+  <div id="carrinho">
+    
+  
+  </div><!--carrinho-->
+
+  <script>
+      const itens = [
+          {
+              id: 0,
+              nome: 'Pomada',
+              img:'pomada1.jpg',
+              quantidade: 0,
+          },
+
+          {
+              id: 1,
+              nome: 'Minoxidil',
+              img:'minoxidil.png',
+              quantidade: 0,
+          },
+
+          {
+              id: 2,
+              nome:'Oléo pra Barba',
+              img:'oleo1.jpg',
+              quantidade: 0,
+          },
+      ]
+
+
+      inicializarloja = () => {
+          var containerProdutos = document.getElementById('produtos');
+          itens.map((val)=>{
+         
+           containerProdutos.innerHTML+=`
+
+            <div class="produtos-single">
+                <img src = "`+val.img+`"/>
+                <p>`+val.nome+`</p>
+                <a key="`+val.id+`"  href="#">Adicionar ao carrinho!<a/>
+                </div>
+            
+            `;       
+             
+          })
+      }
+
+      inicializarloja();
+
+         atualizarCarrinho = () => {
+         var containerCarrinho = document.getElementById('carrinho');
+         containerCarrinho.innerHTML = "";
+          itens.map((val)=>{
+
+             if(val.quantidade > 0){
+                 containerCarrinho.innerHTML+=`
+            
+               <p>`+val.nome+`|quantidade: `+val.quantidade+` </p>
+               <hr>
+        
+            
+            `;       
+             }
+          })
+        }
+          var links = document.getElementsByTagName('a');
+
+
+          for(var i = 0; i < links.length; i++){
+              links[i].addEventListener("click",function(){
+                  let key = this.getAttribute('key');
+                  itens[key].quantidade++;
+                  atualizarCarrinho();
+                  return false;
+              })
+          }
+      
+  </script>
+</body>
+
+</html>
